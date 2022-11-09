@@ -4,7 +4,7 @@ const PostSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Please provide name"],
+      required: [true, "Please provide title"],
     },
     uid: {
       type: Number,
@@ -18,6 +18,11 @@ const PostSchema = new Schema(
     },
     name: {
       type: String,
+    },
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      default: "private",
     },
   },
   {
