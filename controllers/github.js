@@ -13,8 +13,7 @@ const github = async (req, res) => {
         },
       });
       const resp = await axiosInstance.post(
-        "https://github.com/login/oauth/access_token?client_id=ba8afc4a26d4e6d97c96&client_secret=3b83bc84b594f4745b98ff32e19210153b1e2e80&code=" +
-          req.body.code
+        `https://github.com/login/oauth/access_token?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}&code=${req.body.code}`
       );
 
       const responseFromGithub = JSON.parse(resp.data);
@@ -42,7 +41,7 @@ const github = async (req, res) => {
                 // email: result.email,
                 github_join_date: result.created_at,
               },
-              "ASDYG@#@yegbhasd&#^$&*HDSDS"
+              process.env.JWT_SECRET
             );
 
             const clientCookie = cookie.serialize("access_token", token, {
