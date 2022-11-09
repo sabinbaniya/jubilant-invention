@@ -9,6 +9,10 @@ const GetPostDetailFromCreate = async (req, res) => {
       _id: id,
     }).lean();
 
+    if (!post) {
+      return res.json({ success: true, data: "No post found" });
+    }
+
     const { uid } = jwt.decode(req.body.token);
 
     if (post.uid !== uid)

@@ -10,8 +10,7 @@ const GetPostDetail = async (req, res) => {
     }).lean();
 
     if (!post) {
-      // return res.re
-      return res.json({ success: false, data: "No post found" });
+      return res.json({ success: true, data: "No post found" });
     }
 
     if (!req.body.token) {
