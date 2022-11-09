@@ -9,6 +9,11 @@ const GetPostDetail = async (req, res) => {
       _id: id,
     }).lean();
 
+    if (!post) {
+      // return res.re
+      return res.json({ success: false, data: "No post found" });
+    }
+
     if (!req.body.token) {
       // means logged out user/ external user
       if (post.visibility === "public") {
