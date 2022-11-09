@@ -11,6 +11,15 @@ const GetPostDetail = async (req, res) => {
 
     console.log(req);
 
+    if (!req.body.token) {
+      // means logged out user/ external user
+      if (post.visibility === "public") {
+        return res.json({ success: true, data: post });
+      } else {
+        return res.json({ success: true, data: "Post is private" });
+      }
+    }
+
     const { uid } = jwt.decode(req.body.token);
 
     // console.log(req.body);
